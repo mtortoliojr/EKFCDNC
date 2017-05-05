@@ -25,16 +25,13 @@ function [x,u,r,y] = ler_realizacao(filename,idx,t);
 % XN = [x1;...;xN]: N matrizes de realizações de x empilhadas
 % UN = [u1;...;yN]: N matrizes de realizações de u empilhadas
 % YN = [y1;...;yN]: N matrizes de realizações de y empilhadas
-load(filename,'N','tf','XN','UN','RN','YN');
+load(filename,'N','tf','XN','UN','BN','RN','YN');
 
 % Dimensão dos vetores x, u e y
 nx = 6; nu = 3; ny = 8;
 
 % Período de amostragem dos sensores
 Ts = 0.05; 
-
-% Realização x
-x = XN(:,1:t/Ts+1);
 
 % Realização r
 r = RN(:,1:t/Ts+1);
@@ -43,9 +40,16 @@ r = RN(:,1:t/Ts+1);
 j1 = nu * (idx-1) + 1; j2 = j1 + nu - 1;
 u = UN(j1:j2,1:t/Ts+1);
 
+% Realização b de índice idx
+j1 = nu * (idx-1) + 1; j2 = j1 + nu - 1;
+b = BN(j1:j2,1:t/Ts+1);
+
+% Realização x
+x = XN(:,1:t/Ts+1);
+x(4:6,:) = b;
+
 % Realização y de índice idx 
 j1 = ny * (idx-1) + 1; j2 = j1 + ny - 1;
 y = YN(j1:j2,1:t/Ts+1);
-
 
 end
