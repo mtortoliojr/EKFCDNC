@@ -10,6 +10,9 @@ function x2 = integral_edo_x(x1,uk,Ts)
 % Passo de integração
 h = Ts;
 
+% w estimado
+%uk = uk - x1(4:6);
+
 % Termos k1, k2, k3 e k4
 k1 = funcao_f(x1,uk);
 k2 = funcao_f(x1+0.5*h*k1,uk);

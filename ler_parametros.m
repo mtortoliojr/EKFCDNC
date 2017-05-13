@@ -53,8 +53,8 @@ medida = struct('pG',pG,'q',q,'ny',ny,'nv',nv,'R',R);
 %----------------------------------------
 
 % Média inicial
-q0 = [1 0 0 0]';
-b0 = [1 1 1]';
+q0 = [0 0 0 1]'; q0 = q0 / norm(q0);
+b0 = [0 0 0]';
 x_ = [q0;b0]; nx = length(x_);
 
 if(length(x_) ~= nx)

@@ -17,22 +17,24 @@ q = x(1:4);
 % Matriz DPG parametrizada pelo quatérnio q
 DPG = q2D(q);
 
-% Jacobiana da matriz DPG
-dDPG = jacobiana_DPG(q);
+% Jacobiana da matriz DPGr
+dDPGr = jacobiana_DPGr(q,r);
 
 % Cálculo de sCi
 sCi = DCP * DPG * r - DCP * rPCP;
 
 % --------------------------------------------------------------
 % dsCi = d(sCi)/d(q)
-% dhiq = d(hi)/d(q)
 % --------------------------------------------------------------
-dsCi1 = (DCP * dDPG(:,1:3)) * r;
-dsCi2 = (DCP * dDPG(:,4:6)) * r;
-dsCi3 = (DCP * dDPG(:,7:9)) * r;
-dsCi4 = (DCP * dDPG(:,10:12)) * r;
+dsCi1 = (DCP * dDPGr(:,1));
+dsCi2 = (DCP * dDPGr(:,2));
+dsCi3 = (DCP * dDPGr(:,3));
+dsCi4 = (DCP * dDPGr(:,4));
 dsCi = [dsCi1, dsCi2, dsCi3, dsCi4];
 
+% --------------------------------------------------------------
+% dhiq = d(hi)/d(q)
+% --------------------------------------------------------------
 dhiq = zeros(2,4);
 dhiq(1,1) = [dsCi(1,1) * sCi(3) - sCi(1) * dsCi(3,1)];
 dhiq(1,2) = [dsCi(1,2) * sCi(3) - sCi(1) * dsCi(3,2)];

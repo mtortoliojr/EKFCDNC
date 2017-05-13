@@ -7,9 +7,9 @@ function hi = funcao_hi(x,r)
 param = ler_parametros();
 
 % Parâmetros
-f = param.fisico.f;
-DCP = param.fisico.DCP;
-rPCP = param.fisico.rPCP;
+f		= param.fisico.f;
+DCP 	= param.fisico.DCP;
+rPCP 	= param.fisico.rPCP;
 
 % Componentes q de x
 q = x(1:4);

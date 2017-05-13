@@ -27,6 +27,8 @@ P_ = param.filtro.P0;
 
 % Inicialização do filtro
 xe = zeros(nx,nk); xe(:,1) = x_;
+qe = zeros(4,nk); qe(:,1) = [0 0 0 1]';
+
 P = P_;
 
 % Loop de estimação
@@ -93,9 +95,11 @@ for k = 1:nk-1
     xe(1:4,k+1) = q / norm_q;
 
     % Pqq otimizado
-    kk1 = ((q * q') / (q'*q)) / res_til;
-    kk2 = (norm_q - 1)^2;    
-    P(1:4,1:4) = Pqq + kk1 * kk2;
+    %kk1 = ((q * q') / (q'*q)) / res_til;
+    %kk2 = (norm_q - 1)^2;    
+    %P(1:4,1:4) = Pqq + kk1 * kk2;
+   
+   	%qe(:,k+1) = mult_q(xe(1:4,k+1),qe(:,k));
     
 end
 

@@ -1,7 +1,7 @@
 %%--------------------------------------------------------------------------------
 %% Função para o cálculo da Jacobiana de DPG em relação a alfa
 %%--------------------------------------------------------------------------------
-function dDPG = jacobiana_DPG(q)
+function dDPG = jacobiana_DPG(q,r)
 
 % Quatérnios
 q1 = q(1); 

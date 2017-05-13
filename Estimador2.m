@@ -35,8 +35,7 @@ filename = ['realizacao_',num2str(N),'_',num2str(tf),'s.mat'];
 disp(['Arquivo: ',filename]);
 
 % Loop da simula��o MC
-N = 1;
-for j=1:N
+for j = 1:N
 
 	disp(['Realização ',num2str(j),'/',num2str(N)]);
     	
@@ -49,8 +48,8 @@ for j=1:N
     be = xe(5:7,:); b = x(4:6,:);
 
     %% Atualiza��o dos �ndices de desempenho
-    for i=1:length(ea)
-		dD = a2D(a(:,i)) * q2D(qe(:,i))';
+    for i = 1:length(ea)
+    	dD = a2D(a(:,i)) * q2D(qe(:,i))';
     	ea(i) = acosd((trace(dD)-1)/2);
     end
     
@@ -66,7 +65,7 @@ sigma_be = sqrt(sigma_be/N - m_e.^2);
 figure; hold; plot(m_e(1,:)','b'); plot(m_e(1,:)'+sigma_be(1,:)','r'); plot(m_e(1,:)'-sigma_be(1,:)','r'); title('EKF: erro bx');legend({'\mu','\sigma','-\sigma'},'Interpreter','tex'); saveas(gcf,'Resultados/Fig_erro_bx.jpg');
 figure; hold; plot(m_e(2,:)','b'); plot(m_e(2,:)'+sigma_be(2,:)','r'); plot(m_e(2,:)'-sigma_be(2,:)','r'); title('EKF: erro by');legend({'\mu','\sigma','-\sigma'}); saveas(gcf,'Resultados/Fig_erro_by.jpg');
 figure; hold; plot(m_e(3,:)','b'); plot(m_e(3,:)'+sigma_be(3,:)','r'); plot(m_e(3,:)'-sigma_be(3,:)','r'); title('EKF: erro bz');legend({'\mu','\sigma','-\sigma'}); saveas(gcf,'Resultados/Fig_erro_bz.jpg');
-figure; hold; plot(m_e(4,:)','b'); plot(m_e(4,:)'+sigma_be(4,:)','r'); plot(m_e(4,:)'-sigma_be(4,:)','r'); title('EKF: erro ang');legend({'\mu','\sigma','-\sigma'}); saveas(gcf,'Resultados/Fig_erro_ang.jpg');
+figure; hold; plot(m_e(4,:)'+sigma_be(4,:)','r'); plot(m_e(4,:)'-sigma_be(4,:)','r'); plot(m_e(4,:)','b','LineWidth',2); title('EKF: erro ang');legend({'\sigma','-\sigma','\mu'}); saveas(gcf,'Resultados/Fig_erro_ang.jpg');
 
 close all
 

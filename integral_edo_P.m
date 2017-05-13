@@ -5,12 +5,17 @@ function P2 = integral_edo_P(x1,uk,P1,Q,Ts)
 
 % Cálculo da matriz G(t)
 G = funcao_g(x1);
+%G = [-eye(3),zeros(3);zeros(3),eye(3)];
 
 % Cálculo de G*Q*G'
 GQG = G * Q * G';
 
+% w estimado
+%uk = uk - x1(4:6);
+
 % Cálculo da matriz F(t)
 F = jacobiana_f(x1,uk);
+%F = [-matriz_skew(uk), -eye(3); zeros(3,6)];
 
 % ------------------------------------
 % Método de Runge-Kutta de Ordem 4

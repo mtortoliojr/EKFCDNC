@@ -1,11 +1,13 @@
 % Conversão de ângulos de Euler 123 para matriz de atitude D
 function D  = a2D(a)
 
-phi = a(1);
-theta = a(2);
-psi = a(3);
+D = zeros(3);
 
-D = [cos(psi)*cos(theta), cos(psi)*sin(theta)*sin(phi)+sin(psi)*cos(phi), -cos(psi)*sin(theta)*cos(phi)+sin(psi)*sin(phi);
-    -sin(psi)*cos(theta), -sin(psi)*sin(theta)*sin(phi)+cos(psi)*cos(phi), sin(psi)*sin(theta)*cos(phi)+cos(psi)*sin(phi);
-    sin(theta) , -cos(theta)*sin(phi), cos(theta)*cos(phi)];
+c1 = cos(a(1)); s1 = sin(a(1));
+c2 = cos(a(2)); s2 = sin(a(2));
+c3 = cos(a(3)); s3 = sin(a(3));
+
+D(1,:) = [c3*c2, c3*s2*s1 + s3*c1, -c3*s2*c1 + s3*s1];
+D(2,:) = [-s3*c2, -s3*s2*s1 + c3*c1, s3*s2*c1 + c3*s1];
+D(3,:) = [s2, -c2*s1, c2*c1];
 
